@@ -1,0 +1,15 @@
+extends layout
+block title
+  title #{title}
+block content
+  -if( typeof(user) === 'undefined' ){
+    div.hero-unit
+      h1 Welcome to My Book
+      p My Book is built based on Node.js and Jade Templating Engine
+        a(href='/login').btn.btn-primary.btn-large Login
+        a(href='/reg').btn.btn-large Registry Now
+  -}
+  -else{
+    include say
+    include posts
+  -}

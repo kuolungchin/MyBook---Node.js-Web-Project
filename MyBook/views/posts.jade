@@ -1,0 +1,29 @@
+-if( typeof(posts) !== 'undefined' ){
+  -if(posts.length === 0){
+    div.row(id='postDivContent') You don't have any post yet.
+  -}  
+  each post, index in posts
+    div.row(id='postDivContent')
+      div(id='#{post._id}', type='post').span4.offset3
+        h3 
+          a(href='/u/#{post.username}') #{post.username}
+          |  said:
+        p(postID='#{post._id}', type='commentDate'): small: =post.dateString
+        p(postID='#{post._id}', type='comment') #{post.comment}
+        -if( post.replyLength > 2 ) {
+          p(postID='#{post._id}', type='reply'): a(postID='#{post._id}', type='reply') See all previous replies
+        -}
+        each reply, i in post.replies
+          p(postID='#{post._id}', type='reply'): small: =reply.dateString
+          p(postID='#{post._id}', type='reply')
+            a(href='/u/#{reply.username}') #{reply.username}
+            |  replied:
+            small  #{reply.message}
+        .input-group.input-group-xs
+          input.form-control(postid='#{post._id}', name='reply', type='text', placeholder='Reply your message...')
+        span.input-group-btn.input-group-xs
+          button.btn.btn-primary(type='button', btnReply='ajax', postid='#{post._id}') Reply
+    -if( index < posts.length -1 ){
+      hr
+    -}    
+-}
