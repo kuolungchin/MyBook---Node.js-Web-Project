@@ -57,7 +57,7 @@ routes(app);
 
 server = app.listen(app.get('port'));
 io = require('socket.io')(server);
-console.log("Express server listening on port 3000");
+console.log("Express server listening on port:" + app.get('port'));
 
 setTimeout(  function(){
 io.set('authorization', function (handshake, accept) {
