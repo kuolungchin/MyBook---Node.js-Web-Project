@@ -105,7 +105,7 @@ $(document).ready(function(){
 
 		
 
- var socket = io.connect('http://localhost');
+ var socket = io.connect('http://localhost:3000');
   socket.on('new_reply', function (data) {	
     //console.log(data);
     var socketMsg = JSON.parse(data);
